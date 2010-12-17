@@ -1,0 +1,20 @@
+Build from source:
+==================
+
+Option 1:
+---------
+- Checkout source, and integrate into a NetBeans (with J2ME support) project
+- Configure emulators & run using Netbeans auto-generated build scripts
+
+Option 2:
+---------
+- Checkout source
+- Install required tools
+  a) Antenna
+     - http://antenna.sourceforge.net/
+  b) A proper WTK with misc required librarys (midp_2.0.jar,jsr75_1.0,cldc_1.1.jar,etc) 
+     and binarys (preverify,emulator,etc). Ex. Java_ME_platform_SDK_3.0
+  c) Proguard (for obfuscation)
+     - http://proguard.sourceforge.net/
+- Change build.xml paths to match your environment
+- Build/run manually with "ant run", or from within an IDE (Ex. Eclipse)
