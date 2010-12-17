@@ -1,0 +1,62 @@
+<project name="contacts-backup" basedir="." default="build">
+
+<!-- 
+     Tools required: 
+
+     1) Antenna
+        - http://antenna.sourceforge.net/
+
+     2) A proper WTK with misc required libs (midp_2.0.jar,jsr75_1.0,cldc_1.1.jar,etc) and binarys (preverify,emulator,etc)
+        - Ex. OSX Netbeans: /Applications/NetBeans/NetBeans 7.0 Beta.app/Contents/Resources/NetBeans/mobility/Java_ME_platform_SDK_3.0
+
+     3) Proguard (for obfuscation)
+        - http://proguard.sourceforge.net/
+
+     Change the 3 paths below to match your environment
+-->
+
+<taskdef resource="antenna.properties" classpath="/Library/j2me/antenna/antenna-bin-1.2.1-beta.jar"/>
+<property name="wtk.home" value="/Library/j2me/wtk"/>
+<property name="wtk.proguard.home" value="/Library/j2me/proguard4.5.1"/>
+
+<property name="wtk.optionalpda.enabled" value="true" />
+<property name="wtk.midp.version" value="2.0" />
+<property name="wtk.cldc.version" value="1.1" />
+<property name="app.file.name" value="contbackup" />
+<property name="app.name" value="Contacts Backup" />
+<property name="app.vendor" value="Leif Eriksson" />
+
+<target name="build">
+
+	<delete dir="dist" />
+    <mkdir dir="dist" />
+
+    <wtkjad version="0.0.1" name="${app.name}" vendor="${app.vendor}" jadfile="dist/${app.file.name}.jad" jarfile="dist/${app.file.name}.jar">
+        <midlet name="Phone Backup" class="fi.leif.midlet.contactsbackup.ContactsBackupMidlet"/>
+    </wtkjad>
+
+	<delete dir="build" />
+    <mkdir dir="build/classes" />
+
+    <wtkbuild srcdir="src" destdir="build/classes" preverify="false">
+     <classpath>
+      <pathelement location="lib/kxml2-min-2.3.0.jar"/>
+     </classpath>
+    </wtkbuild>
+
+    <wtkpackage obfuscate="true" preverify="true" jadfile="dist/${app.file.name}.jad" jarfile="dist/${app.file.name}.jar">
+     <classpath>
+      <pathelement location="lib/kxml2-min-2.3.0.jar"/>
+     </classpath>
+     <fileset dir="build/classes" />
+     <fileset dir="res"/>
+     <zipfileset src="lib/kxml2-min-2.3.0.jar"/>
+    </wtkpackage>
+
+</target>
+
+<target name="run">
+ <wtkrun jadfile="dist/${app.file.name}.jad"/>
+</target>
+
+</project>
