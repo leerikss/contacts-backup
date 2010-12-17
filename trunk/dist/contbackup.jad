@@ -1,0 +1,6 @@
+MIDlet-Jar-URL: contbackup.jar
+MIDlet-Jar-Size: 24268
+MIDlet-Name: Contacts Backup
+MIDlet-Vendor: Leif Eriksson
+MIDlet-Version: 0.0.1
+MIDlet-1: Phone Backup, , fi.leif.midlet.contactsbackup.ContactsBackupMidlet
