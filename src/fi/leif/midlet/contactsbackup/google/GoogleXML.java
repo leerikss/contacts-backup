@@ -180,20 +180,16 @@ public class GoogleXML
          {
             item = contact.getString(field, index);
             if (item.equals(""))
-            {
                return null;
-            }
             if (capFirstLet)
-            {
                item = StringUtil.capitalize(item);
-            }
          }
          catch (Exception e)
          {
             return null;
          }
       }
-      return item;
+      return StringUtil.toEntitys( item );
    }
 
    private String getWhere(int attr)

@@ -12,11 +12,25 @@ public class StringUtil
 
    public static String replaceEntitys(String data)
    {
+	   // TODO: Add more
       return replaceAll(data, "&quot;", "\"");
    }
 
+   
+   public static String toEntitys(String data)
+   {
+	   // TODO: Add more
+	   data = replaceAll(data, "&", "_#38;");
+	   data = replaceAll(data, "<", "&#60;");
+	   data = replaceAll(data, ">", "&#62;");
+	   data = replaceAll(data, "_#38;", "&#38;");
+	   return data;
+   }
+   
    public static String replaceAll(String data, String replace, String with)
    {
+	  if(data == null)
+		  return null;
       while (data.indexOf(replace) > -1)
       {
          int from = data.indexOf(replace);
